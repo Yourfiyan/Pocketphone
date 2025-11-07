@@ -37,7 +37,6 @@ Complete CRUD operations for phone products with image handling
 pocketphone/
 ├── index.php              # Main front-end page
 ├── hashed.php            # Password hashing utility
-├── invoice.html          # Invoice generation template
 │
 ├── admin/                # Admin Panel Directory
 │   ├── index.php         # Admin dashboard
