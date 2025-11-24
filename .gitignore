@@ -1,0 +1,63 @@
+# Sensitive Configuration Files
+# These files may contain credentials and should never be committed
+.env
+.env.local
+.env.production
+db_config.php
+hashed.php
+
+# Database dumps and backups
+*.sql
+*.sql.gz
+*.sql.zip
+backup/
+backups/
+
+# Log files
+*.log
+logs/
+error_log
+access_log
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.cache
+
+# Uploaded files (keep the directory structure)
+uploads/*
+!uploads/.gitkeep
+!uploads/background.png
+
+# Dependencies (if using Composer for PHP)
+vendor/
+composer.lock
+
+# System files
+.htaccess.bak
+php_errors.log
+error_log
+
+# Build and deployment artifacts
+dist/
+build/
+.deploy/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini

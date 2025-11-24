@@ -36,7 +36,10 @@ Complete CRUD operations for phone products with image handling
 ```
 pocketphone/
 ├── index.php              # Main front-end page
-├── hashed.php            # Password hashing utility
+├── hashed.php            # Password hashing utility (dev only - see .gitignore)
+├── .gitignore            # Excludes sensitive files from version control
+├── SECURITY_AUDIT.md     # Security assessment report
+├── WORKFLOW_SECURITY_GUIDELINES.md  # GitHub Actions security guide
 │
 ├── admin/                # Admin Panel Directory
 │   ├── index.php         # Admin dashboard
@@ -44,13 +47,44 @@ pocketphone/
 │   ├── edit_product.php  # Product editing interface
 │   ├── delete_product.php # Product deletion handler
 │   ├── auth_check.php    # Authentication middleware
-│   ├── db_config.php     # Database configuration
+│   ├── db_config.php     # Database configuration (excluded from git)
+│   ├── db_config.example.php  # Database config template
 │   ├── login.php         # Admin login interface
 │   ├── logout.php        # Session cleanup
 │   └── style.css         # Admin panel styling
 │
 └── uploads/              # Product image storage
 ```
+
+## ⚙️ Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Yourfiyan/Pocketphone.git
+   cd Pocketphone
+   ```
+
+2. **Configure Database**
+   ```bash
+   cp admin/db_config.example.php admin/db_config.php
+   ```
+   Then edit `admin/db_config.php` with your actual database credentials.
+
+3. **Set up MySQL Database**
+   - Create a new database
+   - Import your database schema
+   - Update credentials in `db_config.php`
+
+4. **Configure Web Server**
+   - Point your web server to the project directory
+   - Ensure PHP and MySQL are properly configured
+   - Set proper file permissions for `uploads/` directory
+
+5. **Security Checklist**
+   - ✅ Change default database credentials
+   - ✅ Update admin password (not `admin123` for production!)
+   - ✅ Verify `.gitignore` excludes sensitive files
+   - ✅ Never commit `db_config.php` or `hashed.php` with real credentials
 
 ## 🔒 Security Implementation
 
@@ -61,6 +95,16 @@ Security is a top priority in this admin panel:
 - **Data Protection:** Prepared statements prevent SQL injection attacks
 - **Input Validation:** All user inputs are validated and sanitized
 - **XSS Prevention:** Output escaping prevents cross-site scripting
+
+### Security Documentation
+- 📋 [Security Audit Report](SECURITY_AUDIT.md) - Comprehensive security assessment
+- 🔐 [Workflow Security Guidelines](WORKFLOW_SECURITY_GUIDELINES.md) - Best practices for GitHub Actions
+
+### Setup Security
+1. Copy `admin/db_config.example.php` to `admin/db_config.php`
+2. Update database credentials in `db_config.php`
+3. **Never commit** `db_config.php` or `hashed.php` with real credentials
+4. Review `.gitignore` to ensure sensitive files are excluded
 
 ## 📝 License
 
