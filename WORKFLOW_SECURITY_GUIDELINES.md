@@ -192,7 +192,7 @@ jobs:
 
 1. **Pin to specific SHA (most secure):**
 ```yaml
-- uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab  # v4.1.1
+- uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab  # v4.1.0
 ```
 
 2. **Pin to version tag (good):**
