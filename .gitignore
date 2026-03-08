@@ -1,0 +1,32 @@
+# Dependencies
+vendor/
+composer.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Environment
+.env
+.env.local
+
+# Uploads (user content)
+uploads/*.jpg
+uploads/*.jpeg
+uploads/*.png
+uploads/*.gif
+uploads/*.webp
+!uploads/.gitkeep
+
+# Logs
+*.log
+
+# Database dumps
+*.sql
