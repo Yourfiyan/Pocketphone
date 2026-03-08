@@ -62,12 +62,55 @@ Security is a top priority in this admin panel:
 - **Input Validation:** All user inputs are validated and sanitized
 - **XSS Prevention:** Output escaping prevents cross-site scripting
 
-## 📝 License
+## Case Study
+
+### Problem
+
+Small phone retailers typically manage inventory in spreadsheets or handwritten ledgers. This leads to pricing errors, duplicate entries, no image tracking, and zero access control — anyone with the spreadsheet can modify records.
+
+### Solution
+
+PocketPhone provides a web-based inventory management system with a dedicated admin panel. Retailers can add, edit, and delete products with images through a clean interface. A public-facing showcase page displays the current inventory to customers automatically.
+
+### Architecture
+
+The system follows a traditional PHP MVC-like pattern:
+
+```mermaid
+graph TD
+    A[Browser] -->|HTTP| B[index.php — Product Showcase]
+    A -->|Admin Login| C[admin/login.php]
+    C -->|Session Auth| D[auth_check.php]
+    D --> E[admin/index.php — Dashboard]
+    E --> F[add_product.php]
+    E --> G[edit_product.php]
+    E --> H[delete_product.php]
+    F & G & H -->|Prepared Statements| I[(MySQL)]
+    F & G -->|Image Upload| J[uploads/]
+    I --> B
+```
+
+- **Authentication layer** (`auth_check.php`) guards all admin routes via PHP sessions
+- **Database layer** (`db_config.php`) centralizes connection logic with UTF-8 support
+- **File uploads** are stored on disk in `uploads/` with validation
+
+### Security Considerations
+
+- Passwords are hashed with `password_hash()` (bcrypt) — never stored as plaintext
+- All SQL queries use prepared statements to prevent injection
+- Output is escaped with `htmlspecialchars()` to prevent XSS
+- Session-based authentication with proper logout (session destruction)
+- File upload validation checks type and size before storage
+
+### Lessons Learned
+
+- **Separation of concerns**: Even without a framework, keeping auth, config, and CRUD in separate files made the codebase manageable
+- **Prepared statements from day one**: Retrofitting SQL injection prevention is harder than building it in
+- **Bcrypt over MD5/SHA**: Using PHP's built-in `password_hash()` is simpler AND more secure than rolling custom hashing
+- **Image storage**: Storing on disk with DB references is simpler than BLOB storage for a small-scale app
+
+See [docs/architecture.md](docs/architecture.md) for a deeper dive into the system components.
+
+## License
 
 This project is licensed under the MIT License.
-
-## 👤 Author
-
-**Syed Sufiyan Hamza**
-- GitHub: [@Yourfiyan](https://github.com/Yourfiyan)
-- Portfolio: [yourfiyan.qzz.io](https://yourfiyan.qzz.io)
